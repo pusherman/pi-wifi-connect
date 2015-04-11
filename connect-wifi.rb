@@ -17,6 +17,7 @@ def is_open?(host, port, timeout = 0.5)
           rescue Errno::EHOSTDOWN
           rescue Errno::EHOSTUNREACH
           return false
+
         end
      end
   rescue Timeout::Error
@@ -29,11 +30,9 @@ end
 def find_host(subnet, start_host)
   until start_host === 255 do
     host = "#{subnet}.#{start_host}"
-    if is_open?(host, "28409")
-      return host
-    else
-      print "."
-    end
+    if is_open?(host, "28409") return host
+
+    print "."
     start_host += 1
   end
 
