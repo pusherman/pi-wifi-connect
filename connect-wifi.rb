@@ -50,7 +50,7 @@ if current_ssid.nil?
 end
 
 # So far so good, get the password they want to use
-puts "Looks like you are connect to the network #{current_ssid}.  Great!"
+puts "Looks like you are connect to the network '#{current_ssid}'.  Great!"
 print "Enter the password you used to connect: "
 STDOUT.flush
 password = gets.chomp
@@ -62,11 +62,7 @@ puts ""
 puts "Scanning for client."
 host = find_host "192.168.1", 1
 
-
-if host.nil?
-  puts "Unable to find client :("
-  exit
-end
+puts "Unable to find client :(" if host.nil?
 
 puts "Found it on #{host}"
 
