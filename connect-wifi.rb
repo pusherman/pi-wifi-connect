@@ -3,6 +3,11 @@
 require 'socket'
 require 'timeout'
 
+# Get our current private IP
+def my_private_ip
+  Socket.ip_address_list.detect{|intf| intf.ipv4_private?}.inspect_sockaddr
+end
+
 # Check to see if a specific port is open
 def is_open?(host, port, timeout = 0.5)
   begin
@@ -59,8 +64,9 @@ puts "Setting up client to use the network '#{current_ssid}' with the password '
 puts ""
 
 # Scan their local network to find the speaker light host
-puts "Scanning for client."
-host = find_host "192.168.1", 1
+subnet_to_scan = my_private_ip.rpartition(".")[0]
+puts "Scanning for client on #{subnet_to_scan}.0"
+host = find_host subnet_to_scan, 1
 
 puts "Unable to find client :(" if host.nil?
 
