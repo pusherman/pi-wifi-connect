@@ -30,7 +30,7 @@ end
 def find_host(subnet, start_host)
   until start_host === 255 do
     host = "#{subnet}.#{start_host}"
-    if is_open?(host, "28409") return host
+    return host if is_open?(host, "28409")
 
     print "."
     start_host += 1
