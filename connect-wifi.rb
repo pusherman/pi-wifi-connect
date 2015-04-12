@@ -44,6 +44,7 @@ def find_host(subnet, start_host)
   return nil
 end
 
+
 # Get the users current SSID
 current_ssid = `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}'`.chomp
 
@@ -53,6 +54,7 @@ if current_ssid.nil?
   puts "Please get a connection and try again."
   exit
 end
+
 
 # So far so good, get the password they want to use
 puts "Looks like you are connect to the network '#{current_ssid}'.  Great!"
