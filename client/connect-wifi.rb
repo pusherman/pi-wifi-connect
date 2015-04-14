@@ -2,6 +2,7 @@
 
 require 'socket'
 require 'timeout'
+require 'net/http'
 
 # Get our current private IP
 def my_private_ip
@@ -73,4 +74,10 @@ puts "Unable to find client :(" if host.nil?
 
 puts "Found it on #{host}"
 
-# @todo send SSID/PASS to nginx
+url = URI.parse("http://#{host}:28409/setup_wifi.php?ssid=#{current_ssid}&psk=#{password}")
+req = Net::HTTP::Get.new(url.to_s)
+res = Net::HTTP.start(url.host, url.port) {|http|
+  http.request(req)
+}
+
+puts 'ALL DONE!!!  Remove wired connection and power cable and then reconnect power cable.' if res.body == 'super!'
