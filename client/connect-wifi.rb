@@ -55,7 +55,6 @@ if current_ssid.nil?
   exit
 end
 
-
 # So far so good, get the password they want to use
 puts "Looks like you are connect to the network '#{current_ssid}'.  Great!"
 print "Enter the password you used to connect: "
