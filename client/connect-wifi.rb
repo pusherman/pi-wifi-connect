@@ -83,4 +83,8 @@ res = Net::HTTP.start(url.host, url.port) {|http|
   http.request(req)
 }
 
-puts 'ALL DONE!!!  Remove wired connection and power cable and then reconnect power cable.' if res.body == 'super!'
+if res.body == 'super!'
+  puts 'ALL DONE!!!  Remove wired connection and power cable and then reconnect power cable.'
+else
+  puts 'Something went wrong... not really sure what though :('
+end
