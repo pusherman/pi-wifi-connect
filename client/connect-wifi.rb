@@ -70,7 +70,10 @@ subnet_to_scan = my_private_ip.rpartition(".")[0]
 puts "Scanning for client on #{subnet_to_scan}.0"
 host = find_host subnet_to_scan, 1
 
-puts "Unable to find client :(" if host.nil?
+if host.nil?
+  puts "Unable to find client :("
+  exit
+end
 
 puts "Found it on #{host}"
 
