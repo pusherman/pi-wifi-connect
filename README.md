@@ -8,8 +8,8 @@ Setting up the Pi
 apt-get update
 apt-get install libapache2-mod-php5 php5 apache2
 
-# change ports to 28409
-vi /etc/apache2/ports.conf 
+
+vi /etc/apache2/ports.conf (change ports to 28409)
 
 mv setup_wifi.php /var/www/
 mv interfaces /etc/network/
