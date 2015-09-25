@@ -1,5 +1,12 @@
 <?php
 
+$ssid = trim($_GET['ssid']);
+$psk = trim($_GET['psk']);
+
+if (!$ssid || !$psk) {
+  return;
+}
+
 $config = 'wpa.conf';
 
 if (file_exists($config)) {
