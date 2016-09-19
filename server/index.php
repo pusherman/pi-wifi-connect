@@ -1,16 +1,7 @@
 <?php
-  exec('/sbin/ifconfig -s|awk \'{print $1}\'', $interfaces, $returnValue);
-  array_shift($interfaces);
+  exec("ip route get 8.8.8.8 | grep -Po 'dev \K\w+' | grep -qFf - /proc/net/wireless && echo wireless || echo wired", $connectionType);
 
-  foreach($interfaces as $if) {
-    if ($if === 'eth0') {
-      $connection['type'] = 'wired';
-
-    } elseif($if === 'wifi') {
-      $connection['type'] = 'wifi';
-    }
-  }
-
+  $connection['type'] = $connectionType[0];
   $connection['ip'] = $_SERVER['SERVER_ADDR'];
 
   if ($_GET['output']) {
@@ -38,7 +29,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1>Speakerlight Status</h1>
+        <h1>Aura Status</h1>
         <table class="table">
           <tr>
             <td><h3 class="subtle">IP Address:</h3></td>
